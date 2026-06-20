@@ -1,0 +1,75 @@
+POWER ARCHITECTURE
+
+  Overview:
+The RangeGuard system is powered from a **24V DC industrial supply**. A **TPS5403DR buck converter** efficiently steps the voltage down to **3.3V**, which serves as the main power rail for all onboard electronics.
+
+
+  Power Tree
+
+
+24V DC Input
+      │
+      ▼
+ Fuse Protection
+      │
+      ▼
+TPS5403DR Buck Converter
+     (24V → 3.3V)
+      │
+      ├── PIC16F877A Microcontroller
+      ├── VL53L0X ToF Sensor
+      ├── ESP8266 Wi-Fi Module
+      ├── microSD Card
+      ├── MAX3232 RS-232 Interface
+      └── Buzzer Driver Circuit
+
+
+
+
+   Power Distribution
+
+| Component     | Supply Voltage |
+| ------------- | -------------: |
+| PIC16F877A    |           3.3V |
+| VL53L0X       |           3.3V |
+| ESP8266       |           3.3V |
+| microSD Card  |           3.3V |
+| MAX3232       |           3.3V |
+| Buzzer Driver |           3.3V |
+
+
+
+   Estimated Current Consumption
+
+| Component    |      Typical Current |
+| ------------ | -------------------: |
+| PIC16F877A   |               ~12 mA |
+| VL53L0X      |               ~20 mA |
+| ESP8266      | ~80 mA (300 mA Peak) |
+| microSD Card |               ~50 mA |
+| MAX3232      |                ~5 mA |
+| Buzzer       |               ~30 mA |
+
+
+   Overall Power Consumption
+
+| Parameter                 | Value   |
+| ------------------------- | ------- |
+| Input Voltage             | 24V DC  |
+| Output Voltage            | 3.3V DC |
+| Typical Current           | ~170 mA |
+| Peak Current              | ~475 mA |
+| Typical Power             | ~0.55 W |
+| Peak Power                | ~1.57 W |
+| Buck Converter Efficiency | >90%    |
+
+
+
+   Key Features
+
+* 24V industrial power input
+* High-efficiency TPS5403DR buck converter
+* Single regulated 3.3V power rail
+* Low power consumption
+* Stable operation using decoupling capacitors
+* Supports simultaneous sensing, logging, communication, and alarm generation
