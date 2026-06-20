@@ -1,0 +1,76 @@
+⚙️ Working Principle
+RangeGuard operates by continuously monitoring the distance to nearby objects, generating alerts when a predefined threshold is crossed, logging measurements locally, and transmitting data through either RS-232 or Wi-Fi.
+Step 1: Power-On
+
+* The TPS5403DR buck converter steps down the 24V industrial input to a stable 3.3V supply.
+* Soft-start circuitry limits inrush current during startup.
+* The ESP8266 boots in normal mode with GPIO0 and GPIO2 held HIGH.
+Step 2: System Initialization
+
+* The PIC16F877A initializes:
+   * I²C for the VL53L0X Time-of-Flight sensor.
+   * SPI for the microSD card.
+   * UART (9600 baud, 8-N-1) for communication.
+* The VL53L0X is configured, and the microSD card is prepared for data logging.
+Step 3: Distance Measurement
+
+* The VL53L0X continuously measures distance using Laser Time-of-Flight (ToF) technology.
+* Once a measurement is complete, the INT pin notifies the PIC.
+* The PIC reads the measured distance over the I²C interface.
+Step 4: Threshold Evaluation
+
+* The measured distance is compared with a user-defined threshold stored in EEPROM.
+* If the measured distance is below the threshold:
+   * The buzzer driver transistor is activated.
+   * The buzzer generates an audible warning.
+* The alarm is automatically cleared once the object moves beyond the hysteresis limit.
+Step 5: Data Logging
+
+* Every valid measurement is stored on the microSD card as a CSV record containing:
+   * Timestamp
+   * Distance (mm)
+   * Alarm Status
+* This ensures data remains available even after power loss.
+Step 6: Communication
+The same sensor data is transmitted over UART, with the output selected using a DPDT switch.
+RS-232 Mode
+
+* The MAX3232 converts TTL UART signals to RS-232 voltage levels.
+* Data is transmitted to a PC, PLC, or HMI through the DB9 interface.
+Wi-Fi Mode
+
+* The ESP8266 receives the UART data.
+* It connects to the configured Wi-Fi network.
+* Sensor readings are published to an MQTT broker (or HTTP endpoint) for remote monitoring.
+Step 7: Fault Recovery
+
+* If the VL53L0X becomes unresponsive, the firmware resets the sensor by toggling the XSHUT pin.
+* The sensor is reinitialized automatically without restarting the entire system.
+
+🔄 System Workflow
+
+24V DC Input
+      │
+      ▼
+TPS5403 Buck Converter
+      │
+      ▼
+PIC16F877A Initialization
+      │
+      ▼
+VL53L0X Measures Distance
+      │
+      ▼
+Compare with Threshold
+      │
+      ├──► Activate Buzzer (If Threshold Exceeded)
+      │
+      ├──► Store Data to microSD Card
+      │
+      └──► Send Data via UART
+               │
+        ┌──────┴──────┐
+        ▼             ▼
+    MAX3232       ESP8266
+      │             │
+   RS-232        Wi-Fi (MQTT/HTTP)
