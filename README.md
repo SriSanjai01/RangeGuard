@@ -137,7 +137,17 @@ Timestamp,Distance(mm),Alarm
 ````
 
 ---
+## 🔋 Power Budget
 
+| Parameter | Value |
+|-----------|-------|
+| Input Voltage | 24 V DC |
+| Output Voltage | 3.3 V |
+| Typical Current | ~170 mA |
+| Peak Current | ~475 mA |
+| Typical Power | ~0.55 W |
+| Peak Power | ~1.6 W |
+| Buck Converter Efficiency | ~90% |
 ## 🔧 Protection Features
 
 * Input Fuse Protection
