@@ -62,16 +62,19 @@ Industrial environments require reliable systems to monitor object proximity, tr
 
 ## 🔷 PCB Top Layer
   Top layer showing component placement, signal routing, and optimized trace layout for reliable operation.
-  <img width="931" height="394" alt="image" src="https://github.com/user-attachments/assets/77ad07f1-fe6f-4840-ab78-8a553868cde4" />
+  <img width="933" height="393" alt="image" src="https://github.com/user-attachments/assets/f1d5386f-7513-42c4-a0a0-0bf994909d6f" />
+
 
 ---
 ## 🔶 PCB Bottom Layer
   Bottom layer with a continuous ground plane to improve EMC performance and reduce return-path impedance.
-  <img width="935" height="391" alt="image" src="https://github.com/user-attachments/assets/2efe09c0-a673-4b90-8578-22d7c030e9df" />
+ <img width="931" height="392" alt="image" src="https://github.com/user-attachments/assets/f3fd8c60-774d-49d5-a5f6-f1c8968daec7" />
+
 ---
 ##  🖥️ 3D PCB View
   3D rendered view of the completed PCB illustrating the final component placement and mechanical layout.
-  <img width="925" height="385" alt="image" src="https://github.com/user-attachments/assets/80dd6b00-2f07-4708-a0a3-a74fe0c7f473" />
+  <img width="831" height="346" alt="image" src="https://github.com/user-attachments/assets/14f9c501-54fc-4cdf-b6cf-a1267f10e387" />
+
 ## 🧩 Hardware Components
 
 | Component | Purpose |
